@@ -9,9 +9,14 @@ const ProfilePage = () => {
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
+  
+    const allowedFormats = ["image/jpeg", "image/png"];
+    if (!allowedFormats.includes(file.type)) {
+      alert("Please upload a JPG or PNG image.");
+      return;
+    }
 
     const reader = new FileReader();
-
     reader.readAsDataURL(file);
 
     reader.onload = async () => {
@@ -101,4 +106,5 @@ const ProfilePage = () => {
     </div>
   );
 };
+
 export default ProfilePage;
